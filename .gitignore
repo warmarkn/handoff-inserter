@@ -1,0 +1,5 @@
+node_modules/
+fixtures/out/
+.DS_Store
+*.docx
+!fixtures/synthetic-handoff.docx

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Handoff">
+<meta name="theme-color" content="#0f6e66">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-180.png">
+<title>Handoff Inserter</title>
+<style>/*__CSS__*/</style>
+</head>
+<body>
+
+<section id="home" class="screen">
+  <header><h1>Handoff</h1></header>
+
+  <div id="start">
+    <button id="resume" class="big primary" hidden></button>
+    <button id="open" class="big">Open handoff .docx</button>
+    <div class="card note">
+      Pick the handoff from Files. Entries are appended to each bed's block in a new copy;
+      the original is never changed. Nothing leaves this phone.
+    </div>
+  </div>
+
+  <div id="loaded" hidden>
+    <p class="sub" id="filename"></p>
+    <div class="summary" id="summary"></div>
+    <div class="grid" id="grid"></div>
+    <div class="missing" id="missing" hidden>
+      <h2>Not found in document</h2>
+      <div class="chips" id="missingChips"></div>
+    </div>
+    <div class="card note" style="margin-top:16px">
+      Session is saved on this device until you tap Clear all. iOS may clear it if the app sits unused, so export promptly.
+      <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap">
+        <button id="openOther">Open another</button>
+        <button id="clearAll">Clear all</button>
+      </div>
+    </div>
+  </div>
+  <p class="error" id="error" hidden></p>
+</section>
+
+<section id="bed" class="screen" hidden>
+  <header>
+    <button class="link" id="back">‹ Beds</button>
+    <h1 id="bedTitle"></h1>
+  </header>
+  <p class="bedline" id="bedLine"></p>
+
+  <div class="tagrow">
+    <span class="tag" id="tag"></span>
+    <button class="link" id="tagEdit">Change</button>
+  </div>
+  <div class="override-panel" id="overridePanel" hidden>
+    <input type="date" id="ovDate" aria-label="Entry date">
+    <div class="seg" role="group" aria-label="Shift">
+      <button id="ovD" aria-pressed="false">D</button>
+      <button id="ovN" aria-pressed="false">N</button>
+    </div>
+    <button class="link" id="ovReset">Use clock</button>
+  </div>
+
+  <div class="card preview">
+    <div class="label">Preview</div>
+    <div class="prev" id="prevLine"></div>
+    <div class="new" id="newLine"></div>
+  </div>
+
+  <textarea id="text" placeholder="Type or tap the mic on the keyboard to dictate" autocapitalize="sentences"></textarea>
+  <button id="insert" class="big primary" style="margin-top:10px" disabled>Insert</button>
+
+  <div class="card" id="addedCard" hidden>
+    <div class="label note">Added this session</div>
+    <ol class="added" id="added"></ol>
+  </div>
+</section>
+
+<nav class="toolbar" id="homeBar" hidden>
+  <button id="undo" disabled>Undo</button>
+  <button id="export" class="primary" disabled>Export</button>
+</nav>
+
+<input type="file" id="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+<div class="toast" id="toast" hidden></div>
+
+<script>/*__JS__*/</script>
+</body>
+</html>
